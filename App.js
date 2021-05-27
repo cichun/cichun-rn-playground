@@ -6,11 +6,10 @@
  * @flow strict-local
  */
 
-import React from 'react';
 import type {Node} from 'react';
+import React from 'react';
 import {
   SafeAreaView,
-  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
@@ -18,13 +17,8 @@ import {
   View,
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+import StickyParallaxHeader from 'react-native-sticky-parallax-header';
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -59,33 +53,68 @@ const App: () => Node = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  const file2 = require('./assets/2.png');
+  const file1 = require('./assets/1.png');
+
+  return (
+    <>
+      <StickyParallaxHeader
+        headerType={'TabbedHeader'}
+        backgroundColor={'red'}
+        // backgroundImage={1}
+        // headerHeight={constants.responsiveHeight(13)}
+        renderBody={() => {
+          return <Text>Cześć</Text>;
+        }}
+        foregroundImage={require('./assets/1.png')}
+        tabs={[
+          {title: 'Info', content: <Text key={'info'}>Info</Text>},
+          {title: 'History', content: <Text key={'History'}>History</Text>},
+          {
+            title: 'My Products',
+            content: <Text key={'My Products'}>My Products</Text>,
+          },
+          {title: 'Settings', content: <Text key={'Settings'}>Settings</Text>},
+        ]}
+        title={'Nesta Plus'}
+        logo={require('./assets/icon.png')}
+        logoStyle={{width: 24, height: 24}}
+      />
+
+      {/*<StickyParallaxHeader headerType="AvatarHeader" />*/}
+      {/*<StickyParallaxHeader headerType="DetailsHeader" />*/}
+    </>
+  );
+
+  // eslint-disable-next-line no-unreachable
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
+      <StickyParallaxHeader headerType="TabbedHeader" />
+      {/*<ScrollView*/}
+      {/*  contentInsetAdjustmentBehavior="automatic"*/}
+      {/*  style={backgroundStyle}>*/}
+      {/*  <Header />*/}
+      {/*  <View*/}
+      {/*    style={{*/}
+      {/*      backgroundColor: isDarkMode ? Colors.black : Colors.white,*/}
+      {/*    }}>*/}
+      {/*    <Section title="Step One">*/}
+      {/*      Edit <Text style={styles.highlight}>App.js</Text> to change this*/}
+      {/*      screen and then come back to see your edits.*/}
+      {/*    </Section>*/}
+      {/*    <Section title="See Your Changes">*/}
+      {/*      <ReloadInstructions />*/}
+      {/*    </Section>*/}
+      {/*    <Section title="Debug">*/}
+      {/*      <DebugInstructions />*/}
+      {/*    </Section>*/}
+      {/*    <Section title="Learn More">*/}
+      {/*      Read the docs to discover what to do next:*/}
+      {/*    </Section>*/}
+      {/*    <LearnMoreLinks />*/}
+      {/*  </View>*/}
+      {/*</ScrollView>*/}
     </SafeAreaView>
   );
 };

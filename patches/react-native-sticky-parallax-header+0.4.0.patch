@@ -1,0 +1,23 @@
+diff --git a/node_modules/react-native-sticky-parallax-header/src/predefinedComponents/TabbedHeader/TabbedHeader.js b/node_modules/react-native-sticky-parallax-header/src/predefinedComponents/TabbedHeader/TabbedHeader.js
+index 462aed7..4afd8d8 100644
+--- a/node_modules/react-native-sticky-parallax-header/src/predefinedComponents/TabbedHeader/TabbedHeader.js
++++ b/node_modules/react-native-sticky-parallax-header/src/predefinedComponents/TabbedHeader/TabbedHeader.js
+@@ -57,7 +57,9 @@ export default class TabbedHeader extends React.Component {
+   renderForeground = (scrollY) => {
+     const { title, titleStyle, foregroundImage } = this.props;
+     const messageStyle = titleStyle || styles.message;
+-    const startSize = constants.responsiveWidth(18);
++    // const startSize = constants.responsiveWidth(18);
++    // const endSize = constants.responsiveWidth(10);
++    const startSize = constants.responsiveWidth(70);
+     const endSize = constants.responsiveWidth(10);
+     const [startImgFade, finishImgFade] = [this.scrollPosition(22), this.scrollPosition(27)];
+     const [startImgSize, finishImgSize] = [this.scrollPosition(20), this.scrollPosition(30)];
+@@ -91,6 +93,7 @@ export default class TabbedHeader extends React.Component {
+             <Animated.Image
+               source={logo}
+               style={[styles.profilePic, { width: imageSize, height: imageSize }]}
++              resizeMode={'contain'}
+             />
+           </Animated.View>
+         );
